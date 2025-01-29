@@ -19,38 +19,41 @@ The dataset provided contains information about various movies available on a st
 Listed in: Categories or genres the content belongs to.
 
 ## METHODOLOGY
-Data Cleaning
-	1.	Load the Dataset:
-	•	Import essential libraries like pandas, NumPy, matplotlib, and seaborn.
-	•	Load the dataset into a pandas DataFrame.
-![import](https://github.com/user-attachments/assets/5b21e156-6aa1-4e81-bdab-4fb323329244)
-	
- 
-        2.	Remove Duplicates and Unnecessary Columns:
-	•	Identify and eliminate duplicate records.
-	•	Drop irrelevant columns that won’t be used in the analysis (e.g., unamed).
-	3.	Handle Missing Values:
-	•	Detect columns with missing data.
-	•	Apply appropriate strategies to manage missing values, such as filling with the       mean/median or removing rows.
-	4.	Ensure Data Type Consistency:
-	•	Ensure columns have the correct data types 
-	•	Convert date columns to datetime format.
+### Data Cleaning
+#### Load the Dataset:
+- Import essential libraries like pandas, NumPy, matplotlib, and seaborn.
+- Load the dataset into a pandas DataFrame.
+`import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+df = pd.read_csv('/content/TMBD Movie Dataset.csv')
+df`
+
+#### Remove Duplicates and Unnecessary Columns:
+- Identify and eliminate duplicate records. `df.duplicated().sum()`
+- Drop irrelevant columns that won’t be used in the analysis (e.g., unamed).
+`df.drop('Unnamed: 0', axis=1, inplace = True)`
+  
+#### Handle Missing Values:
+- Detect columns with missing data. `df.isnull().sum()`
+- Apply appropriate strategies to manage missing values, such as filling with the mean/median or removing rows.
+  
+#### Ensure Data Type Consistency:
+- Ensure columns have the correct data types 
+- Convert date columns to datetime format. `df.loc[:, 'release_date'] = pd.to_datetime(df['release_date'], format='YOUR_DATE_FORMAT', errors='coerce')`
 	
 ## Exploratory Data Analysis (EDA):
-    ## Summary Statistics:
-     - Compute basic summary statistics for numerical columns (mean, median, min, max).
-     - Explore the distribution of release years, durations, and ratings.
-     
-     ![stat](https://github.com/user-attachments/assets/27b4d708-fd64-4a8a-b0f3-72daf7c9a022)
-
-   
-   ## Categorical Variables:
-     - Analyze the distribution of show types (Movies vs. TV Shows).
-     - Explore the diversity of countries, directors, and genres.
-   Temporal Trends:
-     - Examine how the number of shows/movies has changed over the years.
-     - Identify any patterns in the date-added column.
- Correlation Analysis:
+### Summary Statistics:
+- Compute basic summary statistics for numerical columns (mean, median, min, max).
+- Explore the distribution of release years, durations, and ratings.
+### Categorical Variables:
+- Analyze the distribution of show types (Movies vs. TV Shows).
+- Explore the diversity of countries, directors, and genres.
+### Temporal Trends:
+- Examine how the number of shows/movies has changed over the years.
+- Identify any patterns in the date-added column.
+### Correlation Analysis:
 Use scatter plots or correlation matrices to explore relationships between variables such as  revenue.
 
 ## Visualization Techniques
@@ -78,30 +81,29 @@ There is a moderate correlation between runtime and revenue, with movies lasting
 
 
 ## Distribution Of RATINGS
-
-![rating](https://github.com/user-attachments/assets/d86a9dcd-338a-4a70-8c95-8b26e188c76b)
-
 The average movie rating is 6.28. The highest-rated film is The Godfather with a score of 8.3, while the lowest-rated is Foodfight with a rating of 2.2.
 Furthermore, there appears to be a relationship between movie popularity and ratings. 
 
-![Relationship](https://github.com/user-attachments/assets/719857b0-ef29-4d71-a1d7-33adc6621b69)
+![Relationship](https://github.com/user-attachments/assets/719857b0-ef29-4d71-a1d7-33adc6621b69) ![Relationship 2](https://github.com/user-attachments/assets/53a7e9ea-f332-4d28-8d6f-f73fa60b4143)
 
 As observed in the chart, more popular movies tend to receive higher ratings compared to less popular ones. This could be attributed to the fact that widely discussed and viewed movies often garner greater appreciation from audiences, leading to higher ratings. And also there is a noticeable relationship between popularity and revenue, this goes to say that the more popular a movie is the more revenue it will most likely generate.
 
-![Relationship 2](https://github.com/user-attachments/assets/53a7e9ea-f332-4d28-8d6f-f73fa60b4143)
+
 
 
 ## DIVERSITY OF DIRECTORS
 
 ![Directors](https://github.com/user-attachments/assets/a121b4b7-a5f3-404e-a357-1edcff8e3db0)
 
-John Carpenter is the most prolific director in the dataset, with 12 films. Despite directing fewer movies (8), Peter Jackson generated the most revenue and ranks as the second most popular director, just behind Christopher Nolan, the most popular.
+
 
 ![Director 2](https://github.com/user-attachments/assets/b79e0fef-2fc4-42af-ab8e-576f806d8484)
 
-Peter Jackson stands out as a top-performing director, consistently producing both financially successful and popular films.
+
 
 ![Director 3](https://github.com/user-attachments/assets/ba6e9040-9d5b-4f36-bf0c-390c57e5cc1c)
+
+John Carpenter is the most prolific director in the dataset, with 12 films. Despite directing fewer movies (8), Peter Jackson generated the most revenue and ranks as the second most popular director, just behind Christopher Nolan, the most popular. Peter Jackson stands out as a top-performing director, consistently producing both financially successful and popular films.
 
 ## Diversity Of  Genres
 ![Genre](https://github.com/user-attachments/assets/b83b72d9-37d6-4532-a238-7ea09b7b4c69)
